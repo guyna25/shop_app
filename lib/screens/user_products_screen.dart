@@ -36,5 +36,5 @@ class UserProductScreen extends StatelessWidget {
       ),
       drawer: AppDrawer(),
     );
-  }
+  }  
 }
