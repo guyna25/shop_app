@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../models/http_exception.dart';
 import 'dart:convert';
 
 import './product.dart';
@@ -63,6 +64,9 @@ class Products with ChangeNotifier {
     try {
       final response = await http.get(url);
       final extractData = json.decode(response.body) as Map<String, dynamic>;
+      if (extractData == null) {
+        return;
+      }
       final List<Product> loadedProducts = [];
       extractData.forEach((prodId, prodData) {
         loadedProducts.add(Product(
@@ -112,9 +116,19 @@ class Products with ChangeNotifier {
     }
   }
 
-  void updateProduct(String id, Product newProduct) {
+  Future<void> updateProduct(String id, Product newProduct) async {
     final _prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (_prodIndex >= 0) {
+      final url = Uri.https(
+          'shop-app-146b2-default-rtdb.europe-west1.firebasedatabase.app',
+          '/products/$id.json');
+      http.patch(url,
+          body: json.encode({
+            'title': newProduct.title,
+            'description': newProduct.description,
+            'imageUrl': newProduct.imageUrl,
+            'price': newProduct.price,
+          }));
       _items[_prodIndex] = newProduct;
       notifyListeners();
     } else {
@@ -122,8 +136,20 @@ class Products with ChangeNotifier {
     }
   }
 
-  void deleteProduct(String id) {
-    _items.removeWhere((prod) => prod.id == id);
+  Future<void> deleteProduct(String id) async {
+    final url = Uri.https(
+        'shop-app-146b2-default-rtdb.europe-west1.firebasedatabase.app',
+        '/products/$id.json');
+    final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
+    var existingProduct = _items[existingProductIndex];
+    final response = await http.delete(url);
+    if (response.statusCode >= 400) {
+      _items.insert(existingProductIndex, existingProduct);
+      notifyListeners();
+      throw HttpException('Could not delete product.');
+    }
+    existingProduct = null;
+    _items.removeAt(existingProductIndex);
     notifyListeners();
   }
 }
