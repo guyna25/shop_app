@@ -34,6 +34,7 @@ class UserProductItem extends StatelessWidget {
               ),
               IconButton(
                   icon: Icon(Icons.delete),
+<<<<<<< HEAD
                   onPressed: () async {
                     try {
                       Provider.of<Products>(context, listen: false)
@@ -41,6 +42,10 @@ class UserProductItem extends StatelessWidget {
                     } catch (error) {
                       scaffold.showSnackBar(SnackBar(content: Text('Deleting failed!', textAlign: TextAlign.center,)));
                     }
+=======
+                  onPressed: () {
+                    Provider.of<Products>(context).deleteProduct(id);
+>>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
                   },
                   color: Theme.of(context).errorColor),
             ],
