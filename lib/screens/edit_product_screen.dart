@@ -82,6 +82,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
           .updateProduct(_editedProduct.id, _editedProduct);
     } else {
 <<<<<<< HEAD
+<<<<<<< HEAD
       try {
         await Provider.of<Products>(context, listen: false)
             .addProduct(_editedProduct);
@@ -107,6 +108,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
       });
 
       Navigator.of(context).pop();
+=======
+      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+>>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
 =======
       Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
 >>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
