@@ -59,6 +59,7 @@ class Products with ChangeNotifier {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   Future<void> fetchAndSetProducts() async {
     final url = Uri.https(
         'shop-app-146b2-default-rtdb.europe-west1.firebasedatabase.app',
@@ -89,10 +90,13 @@ class Products with ChangeNotifier {
 =======
 =======
 >>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
+=======
+>>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
   // void showFavoritesOnly() {
   //   _showFavoritesOnly = true;
   //   notifyListeners();
   // }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
   // void showAll() {
@@ -101,6 +105,14 @@ class Products with ChangeNotifier {
   // }
 >>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
 
+=======
+
+  // void showAll() {
+  //   _showFavoritesOnly = false;
+  //   notifyListeners();
+  // }
+
+>>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
 =======
 
   // void showAll() {
