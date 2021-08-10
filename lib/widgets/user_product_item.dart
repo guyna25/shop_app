@@ -48,6 +48,9 @@ class UserProductItem extends StatelessWidget {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
+=======
 >>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
 =======
 >>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
