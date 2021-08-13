@@ -3,19 +3,21 @@ import 'package:provider/provider.dart';
 
 import '../providers/products.dart';
 
-class ProeductDetailScreen extends StatelessWidget {
+class ProductDetailScreen extends StatelessWidget {
   // final String title;
-  // final String price;
+  // final double price;
 
-  // ProeductDetailScreen(this.title);
-
+  // ProductDetailScreen(this.title, this.price);
   static const routeName = '/product-detail';
 
   @override
   Widget build(BuildContext context) {
-    final productId = ModalRoute.of(context).settings.arguments as String;
-    final loadedProduct =
-        Provider.of<Products>(context, listen: false).findById(productId);
+    final productId =
+        ModalRoute.of(context).settings.arguments as String; // is the id!
+    final loadedProduct = Provider.of<Products>(
+      context,
+      listen: false,
+    ).findById(productId);
     return Scaffold(
       appBar: AppBar(
         title: Text(loadedProduct.title),
@@ -25,10 +27,10 @@ class ProeductDetailScreen extends StatelessWidget {
           children: <Widget>[
             Container(
               height: 300,
+              width: double.infinity,
               child: Image.network(
                 loadedProduct.imageUrl,
                 fit: BoxFit.cover,
-                width: double.infinity,
               ),
             ),
             SizedBox(height: 10),
