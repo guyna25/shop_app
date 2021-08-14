@@ -68,24 +68,26 @@ class Products with ChangeNotifier {
   // }
 
   Future<void> fetchAndSetProducts() async {
-    final url = Uri.parse('https://shop-app-31c5b-default-rtdb.europe-west1.firebasedatabase.app/products.json');
+    final url = Uri.parse(
+        'https://shop-app-31c5b-default-rtdb.europe-west1.firebasedatabase.app/products.json');
     try {
-      
       final response = await http.get(url);
-      // print(response);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      print(extractedData);
       final List<Product> loadedProducts = [];
       if (extractedData != null) {
-      extractedData.forEach((prodId, prodData) {
-        loadedProducts.add(Product(
-          id: prodId,
-          title: prodData['title'],
-          description: prodData['description'],
-          price: prodData['price'],
-          isFavorite: prodData['isFavorite'],
-          imageUrl: prodData['imageUrl'],
-        ));
-      });};
+        extractedData.forEach((prodId, prodData) {
+          loadedProducts.add(Product(
+            id: prodId,
+            title: prodData['title'],
+            description: prodData['description'],
+            price: prodData['price'],
+            isFavorite: prodData['isFavorite'],
+            imageUrl: prodData['imageUrl'],
+          ));
+        });
+      }
+      ;
       _items = loadedProducts;
       notifyListeners();
     } catch (error) {
@@ -95,7 +97,8 @@ class Products with ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     try {
-      final url = Uri.parse('https://shop-app-31c5b-default-rtdb.europe-west1.firebasedatabase.app/products.json');
+      final url = Uri.parse(
+          'https://shop-app-31c5b-default-rtdb.europe-west1.firebasedatabase.app/products.json');
       final response = await http.post(
         url,
         body: json.encode({
@@ -125,13 +128,15 @@ class Products with ChangeNotifier {
   void updateProduct(String id, Product newProduct) {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
-      final url = Uri.parse('https://shop-app-31c5b-default-rtdb.europe-west1.firebasedatabase.app/products/$prodIndex.json');
-      http.patch(url, body: json.encode({
-        'title': newProduct.title,
-        'description': newProduct.description,
-        'imageUrl': newProduct.imageUrl,
-        'price': newProduct.price
-      }));
+      final url = Uri.parse(
+          'https://shop-app-31c5b-default-rtdb.europe-west1.firebasedatabase.app/products/$prodIndex.json');
+      http.patch(url,
+          body: json.encode({
+            'title': newProduct.title,
+            'description': newProduct.description,
+            'imageUrl': newProduct.imageUrl,
+            'price': newProduct.price
+          }));
       _items[prodIndex] = newProduct;
       notifyListeners();
     } else {
@@ -139,17 +144,17 @@ class Products with ChangeNotifier {
     }
   }
 
-  Future<void> deleteProduct(String id) async{
-    final url = Uri.parse('https://shop-app-31c5b-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json');
-    final prodIndex = _items.indexWhere((prod) => prod.id == id);    
+  Future<void> deleteProduct(String id) async {
+    final url = Uri.parse(
+        'https://shop-app-31c5b-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json');
+    final prodIndex = _items.indexWhere((prod) => prod.id == id);
     var existingProduct = _items[prodIndex];
     await http.delete(url).then((response) {
       if (response.statusCode >= 400) {
         throw HttpException("Could not delete product");
       }
       existingProduct = null;
-    })
-    .catchError((_) {
+    }).catchError((_) {
       _items.insert(prodIndex, existingProduct);
     });
     _items.removeAt(prodIndex);
