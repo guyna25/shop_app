@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/orders.dart' show Orders;
 import '../widgets/order_item.dart';
-import '../widgets/app_drawer.dart';
+import '../screens/app_drawer.dart';
 
 class OrdersScreen extends StatelessWidget {
   static const routeName = '/orders';
@@ -18,7 +18,7 @@ class OrdersScreen extends StatelessWidget {
       ),
       drawer: AppDrawer(),
       body: FutureBuilder(
-        future: Provider.of<Orders>(context, listen: false).fetchAndSetOrder(),
+        future: Provider.of<Orders>(context, listen: false).fetchAndSetOrders(),
         builder: (ctx, dataSnapshot) {
           if (dataSnapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());

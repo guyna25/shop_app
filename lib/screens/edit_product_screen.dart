@@ -97,32 +97,51 @@ class _EditProductScreenState extends State<EditProductScreen> {
           .updateProduct(_editedProduct.id, _editedProduct);
       Navigator.of(context).pop();
     } else {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
       try {
         await Provider.of<Products>(context, listen: false)
             .addProduct(_editedProduct);
       } catch (error) {
-        await showDialog(
+        showDialog<Null>(
           context: context,
           builder: (ctx) => AlertDialog(
-            title: Text('An error occurred!'),
-            content: Text('Something went wrong.'),
+            title: Text('An error occured!'),
+            content: Text(error.toString()),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text('Okay'),
                 onPressed: () {
-                  Navigator.of(ctx).pop();
+                  Navigator.of(context).pop();
                 },
               )
             ],
           ),
         );
-      } 
-      // finally {
-      //   setState(() {
-      //     _isLoading = false;
-      //   });
-      //   Navigator.of(context).pop();
-      // }
+      }
+      setState(() {
+        _isLoading = false;
+      });
+
+      Navigator.of(context).pop();
+=======
+      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+>>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
+=======
+      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+>>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
+=======
+      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+>>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
+=======
+      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+>>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
+=======
+      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+>>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
     }
     setState(() {
       _isLoading = false;
