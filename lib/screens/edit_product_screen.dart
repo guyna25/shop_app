@@ -97,51 +97,32 @@ class _EditProductScreenState extends State<EditProductScreen> {
           .updateProduct(_editedProduct.id, _editedProduct);
       Navigator.of(context).pop();
     } else {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       try {
         await Provider.of<Products>(context, listen: false)
             .addProduct(_editedProduct);
       } catch (error) {
-        showDialog<Null>(
+        await showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-            title: Text('An error occured!'),
-            content: Text(error.toString()),
+            title: Text('An error occurred!'),
+            content: Text('Something went wrong.'),
             actions: <Widget>[
-              TextButton(
+              FlatButton(
                 child: Text('Okay'),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(ctx).pop();
                 },
               )
             ],
           ),
         );
-      }
-      setState(() {
-        _isLoading = false;
-      });
-
-      Navigator.of(context).pop();
-=======
-      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
->>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
-=======
-      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
->>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
-=======
-      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
->>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
-=======
-      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
->>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
-=======
-      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
->>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
+      } 
+      // finally {
+      //   setState(() {
+      //     _isLoading = false;
+      //   });
+      //   Navigator.of(context).pop();
+      // }
     }
     setState(() {
       _isLoading = false;

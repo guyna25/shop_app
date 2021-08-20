@@ -49,48 +49,7 @@ class UserProductItem extends StatelessWidget {
             ),
           ],
         ),
-        trailing: Container(
-          width: 100,
-          child: Row(
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.edit),
-                onPressed: () {
-                  Navigator.of(context)
-                      .pushNamed(EditProductScreen.routeName, arguments: id);
-                },
-                color: Theme.of(context).primaryColor,
-              ),
-              IconButton(
-                  icon: Icon(Icons.delete),
-<<<<<<< HEAD
-                  onPressed: () async {
-                    try {
-                      Provider.of<Products>(context, listen: false)
-                          .deleteProduct(id);
-                    } catch (error) {
-                      scaffold.showSnackBar(SnackBar(content: Text('Deleting failed!', textAlign: TextAlign.center,)));
-                    }
-=======
-                  onPressed: () {
-                    Provider.of<Products>(context).deleteProduct(id);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
-=======
->>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
-=======
->>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
-=======
->>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
-=======
->>>>>>> parent of cd0e298 (fixed edit bug and finished till 253)
-                  },
-                  color: Theme.of(context).errorColor),
-            ],
-          ),
-        ));
+      ),
+    );
   }
 }
